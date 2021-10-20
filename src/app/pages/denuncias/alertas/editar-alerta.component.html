@@ -1,0 +1,217 @@
+
+<div class="row">
+    <div class="col-lg-12   ">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Alerta emitida</h4>
+                <h6 class="card-subtitle">Datos de la alerta emitida</h6>
+                <div class="text-center" *ngIf="!emergenciaCargada">
+                    <i class='fa fa-spinner fa-pulse fa-spin fa-2x'></i>
+                </div>
+                <!-- *ngIf="!usuarioCargado" -->
+                <form *ngIf="emergenciaCargada" class="form p-t-20" [formGroup]="alertaForm" (ngSubmit)="emitirAlerta()">
+                    <h6 class="card-subtitle">Datos del denunciante</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nombre</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-email"></i></div>
+                                    <input  type="email" 
+                                            class="form-control" 
+                                            id="exampleInputEmail1"
+                                            readonly 
+                                            formControlName="nombre"
+                                            placeholder="nombre">
+                                </div>
+                                <div class="row">
+                                    <div class="col text-danger">
+                                        <!-- <p *ngIf="campoNoValido('nombre')">El nombre es obligatorio</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Apellido</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input  type="text" 
+                                            class="form-control" 
+                                            id="exampleInputuname"
+                                            readonly 
+                                            formControlName="apellido"
+                                            placeholder="Username">
+                                        </div>
+                                <div class="row">
+                                    <div class="col text-danger">
+                                        <!-- <p *ngIf="campoNoValido('apellido')">El apellido es obligatorio</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="card-subtitle">Datos sobre la denuncia</h6>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Tipo de emergencia</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input  type="text" 
+                                    class="form-control" 
+                                    id="exampleInputuname"
+                                    readonly 
+                                    formControlName="tipoemergencia"
+                                    placeholder="Tipo de denuncia">
+                        </div>
+                        <div class="row">
+                            <div class="col text-danger">
+                                <!-- <p *ngIf="campoNoValido('apellido')">El apellido es obligatorio</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Relatoria</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input  type="text" 
+                                    class="form-control" 
+                                    id="exampleInputuname"
+                                    readonly
+                                    formControlName="relatoria" 
+                                    placeholder="Relatoria">
+                        </div>
+                        <div class="row">
+                            <div class="col text-danger">
+                                <!-- <p *ngIf="campoNoValido('apellido')">El apellido es obligatorio</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Direccion</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input  type="text" 
+                                            class="form-control" 
+                                            id="exampleInputuname"
+                                            readonly
+                                            formControlName="direccion" 
+                                            placeholder="Direccion">
+                                </div>
+                                <div class="row">
+                                    <div class="col text-danger">
+                                        <!-- <p *ngIf="campoNoValido('apellido')">El apellido es obligatorio</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Latitud</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input  type="text" 
+                                            class="form-control" 
+                                            id="exampleInputuname"
+                                            readonly
+                                            formControlName="latitud"
+                                            placeholder="Latitud">
+                                </div>
+                                <div class="row">
+                                    <div class="col text-danger">
+                                        <!-- <p *ngIf="campoNoValido('apellido')">El apellido es obligatorio</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="exampleInputuname">Longitud</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="ti-user"></i></div>
+                                    <input  type="text" 
+                                            class="form-control" 
+                                            id="exampleInputuname"
+                                            readonly 
+                                            formControlName="longitud"
+                                            placeholder="longitud">
+                                </div>
+                                <div class="row">
+                                    <div class="col text-danger">
+                                        <!-- <p *ngIf="campoNoValido('apellido')">El apellido es obligatorio</p> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Nivel de Prioridad</label> 
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-map-alt"></i></div>
+                            <select class="form-control" formControlName="nivel">
+                                <!-- formControlName="nivel" -->
+                                <option *ngFor="let nivel of niveles" [value]="nivel.nivelID">{{nivel.descripcion}}</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col text-danger">
+                                <!-- <p *ngIf="campoNoValido('departamento')">El departamento es obligatorio</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Cambiar estatus emergencia</label> 
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-map-alt"></i></div>
+                            <select class="form-control" formControlName="estados">
+                                <option *ngFor="let estado of estados" [value]="estado.estadosID">{{estado.descripcion}}</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col text-danger">
+                                <!-- <p *ngIf="campoNoValido('departamento')">El departamento es obligatorio</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="exampleInputuname">Ciudad</label> 
+                        <div class="input-group">
+                            <div class="text-center" *ngIf="cargandoCiudad">
+                                <i class='fa fa-spinner fa-pulse fa-spin fa-2x'></i>
+                            </div>
+                            <div *ngIf="!cargandoCiudad" class="input-group-addon"><i class="ti-user"></i></div>
+                            <select *ngIf="!cargandoCiudad" class="form-control" formControlName="ciudad">
+                                <option *ngFor="let ciu of ciudades" [value]="ciu.ciudadID">{{ciu.descripcion}}</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="campoNoValido('ciudad')">La ciudad es obligatoria</p>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="form-group">
+                        <label for="exampleInputuname">Rol</label> 
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <select class="form-control" formControlName="rol">
+                                <option *ngFor="let rol of roles" [value]="rol.rolID">{{rol.descripcion}}</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="campoNoValido('rol')">Debe asignar un rol</p>
+                            </div>
+                        </div>
+                    </div> -->
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                    <button type="button" routerLink="/dashboard/alertas" class="btn btn-inverse waves-effect waves-light">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,82 @@
+<div class="row animated fadeIn fast" *ngIf="!usuarioCargado">
+    <div class="col-12">
+        <div class="text-center">
+          <h4 class="alert-heading">Cargando</h4>
+          <i class='fa fa-spinner fa-pulse fa-spin fa-2x'></i>
+          <p class="mb-0">Espere por favor</p>
+        </div>
+    </div>
+</div> 
+<div class="row" *ngIf="usuarioCargado">
+    <div class="col-lg-12   ">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Mi perfil de usuario</h4>
+                <h6 class="card-subtitle">Ajustes</h6>
+                <form class="form p-t-20" [formGroup]="perfilForm" (ngSubmit)="registrar()">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nombre</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input  type="email" 
+                                    class="form-control" 
+                                    id="exampleInputEmail1" 
+                                    placeholder="nombre"
+                                    formControlName="nombre">
+                        </div>
+                        <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="campoNoValido('nombre')">El nombre es obligatorio</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Apellido</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input  type="text" 
+                                    class="form-control" 
+                                    id="exampleInputuname"
+                                    formControlName="apellido" 
+                                    placeholder="Username">
+                        </div>
+                        <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="campoNoValido('apellido')">El apellido es obligatorio</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Departamento</label> 
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <select (change)="obtenerCiudad($event.target.value)" class="form-control" formControlName="departamento">
+                                <option *ngFor="let dep of departamento" [value]="dep.departamentoID">{{dep.descripcion}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Ciudad</label> 
+                        <div class="input-group">
+                            <div class="text-center" *ngIf="cargandoCiudad">
+                                <i class='fa fa-spinner fa-pulse fa-spin fa-2x'></i>
+                            </div>
+                            <div *ngIf="!cargandoCiudad" class="input-group-addon"><i class="ti-user"></i></div>
+                            <select *ngIf="!cargandoCiudad" class="form-control" formControlName="ciudad">
+                                <option *ngFor="let ciu of ciudades" [value]="ciu.ciudadID">{{ciu.descripcion}}</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="campoNoValido('ciudad')">La ciudad es obligatoria</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                    <button type="button" routerLink="/dashboard" class="btn btn-inverse waves-effect waves-light">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>

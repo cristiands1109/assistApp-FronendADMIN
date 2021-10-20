@@ -1,0 +1,78 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="buscar usuario... ">
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="row animated fadeIn fast" *ngIf="!cargandoDenuncia">
+    <div class="col-12">
+        <div class="text-center">
+          <h4 class="alert-heading">Cargando</h4>
+          <i class='fa fa-spinner fa-pulse fa-spin fa-2x'></i>
+          <p class="mb-0">Espere por favor</p>
+        </div>
+    </div>
+</div> 
+
+<div class="row" *ngIf="!sinRegistro && cargandoDenuncia">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Alertas</h4>
+                <h6 class="card-subtitle">Alertas emitidas</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID Emergencia</th>
+                                <th>Relatoria</th>
+                                <th>Latitud</th>
+                                <th>Longitud</th>
+                                <th>Prioridad</th>
+                                <th>Estatus</th>
+                                <th class="text-nowrap">Cambiar Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let emergencia of Emergencias">
+                                <td>{{emergencia.emergenciaID}}</td>
+                                <td>{{emergencia.relatoria}}</td>
+                                <td>{{emergencia.latitud}}</td>
+                                <td>{{emergencia.longitud}}</td>
+                                <td>                                                    
+                                    <span *ngIf="emergencia.nivel?.descripcion === 'ALTA'" class="label label-danger labelta">{{emergencia.nivel?.descripcion}}</span>
+                                    <span *ngIf="emergencia.nivel?.descripcion === 'MEDIA'" class="label label-warning labelta">{{emergencia.nivel?.descripcion}}</span>
+                                    <span *ngIf="emergencia.nivel?.descripcion === 'BAJA'" class="label label-info labelta">{{emergencia.nivel?.descripcion}}</span>
+                                </td>
+                                <td>                                                    
+                                    <span *ngIf="emergencia.estados?.descripcion === 'ACTIVO'" class="label label-success labelta">{{emergencia.estados?.descripcion}}</span>
+                                </td>
+                                <!-- <td>{{Lunar probe project}}</td> -->
+                                <td class="text-nowrap text-center">
+                                    <a [routerLink]="['/dashboard/alerta',emergencia.emergenciaID]" class="pointer" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-exchange text-inverse m-r-10"></i> </a>
+                                    <!--  -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-secondary">Anteriores</button>
+                    &nbsp;
+                    <button class="btn btn-secondary">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+<div class="row" *ngIf="sinRegistro">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4>No hay registros</h4>
+            </div>
+        </div>
+    </div>
+</div>

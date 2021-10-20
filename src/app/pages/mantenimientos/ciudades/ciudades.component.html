@@ -1,0 +1,99 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form class="form p-t-20">
+                    <div class="form-group">
+                        <label for="exampleInputuname">Departamento</label> 
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <select (change)="obtenerCiudad($event.target.value)" class="form-control">
+                                <option [value]="null">Seleccione un departamento</option>
+                                <option *ngFor="let dep of departamentos" [selected]="dep.departamentoID === this.departamentoSeleccionado" [value]="dep.departamentoID">{{dep.descripcion}}</option>
+                            </select>
+                        </div>
+                    </div>
+        
+                </form>
+                <input *ngIf="ciudadCargada" type="text" class="form-control" placeholder="buscar usuario... ">
+               
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+<!-- SPINNER -->
+<div *ngIf="seleccionoCiudad">
+    <div class="row animated fadeIn fast" *ngIf="!ciudadCargada">
+        <div class="col-12">
+            <div class="text-center">
+              <h4 class="alert-heading">Cargando</h4>
+              <i class='fa fa-spinner fa-pulse fa-spin fa-2x'></i>
+              <p class="mb-0">Espere por favor</p>
+            </div>
+        </div>
+    </div> 
+</div>
+<!-- FIN SPINNER -->
+
+
+<!-- TABLA DE DATOS -->
+<div class="row animated fadeIn fast" *ngIf="ciudadCargada">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Ciudades</h4>
+                        <h6 class="card-subtitle">Ciudades registradas</h6>
+                    </div>
+                    <div class="col">
+                        <div class="text-right">
+                            <button (click)="nuevo()" class="btn btn-primary waves-effect waves-light" type="button"><span class="btn-label"><i class="fa fa-users"></i></span>Crear Ciudad</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Ciudad ID</th>
+                                <th>Descripcion</th>
+                                <th class="text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let ciu of ciudades">
+                                <td>{{ciu.ciudadID}}</td>
+                                <td>{{ciu.descripcion}}</td>
+                                <td class="text-nowrap text-center">
+                                    <a [routerLink]="['/dashboard/ciudad', ciu.ciudadID]" (click)="editar(ciu)" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                                    <a class="pointer" data-toggle="tooltip" data-original-title="Borrar" (click)="eliminarCiudad(ciu)"> <i class="fa fa-close text-danger"></i> </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-secondary">Anteriores</button>
+                    &nbsp;
+                    <button class="btn btn-secondary">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+<!-- FIN TABLA DE DATOS -->
+
+<div class="row" *ngIf="sinRegistro">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4>No hay registros</h4>
+            </div>
+        </div>
+    </div>
+</div>

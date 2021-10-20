@@ -1,0 +1,83 @@
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<section id="wrapper" class="login-register login-sidebar" style="background-image:url(../assets/images/background/login-register.jpg);">
+    <div class="login-box card">
+        <div class="card-body">
+            <form   class="form-horizontal form-material" 
+                    id="loginform"
+                    autocomplete="off"
+                    [formGroup]="registerForm"
+                    (ngSubmit)="crearRegistro()">
+                <a href="javascript:void(0)" class="text-center db"><img src="../assets/images/logo-icon.png" alt="Home" /><br/><img src="../assets/images/logo-text.png" alt="Home" /></a>
+                <h3 class="box-title m-t-40 m-b-0">Registrarse</h3>
+                <div class="form-group m-t-20">
+                        <div class="col-xs-12">
+                            <input  class="form-control" 
+                                    type="text"
+                                    formControlName="nombre"
+                                    placeholder="Nombre">
+                        </div>
+                    </div>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input  class="form-control" 
+                                type="text"
+                                formControlName="apellido"
+                                placeholder="Apellido">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input  class="form-control" 
+                                type="text"
+                                formControlName="celular"
+                                placeholder="Celular">
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-xs-12">
+                        <input  class="form-control" 
+                                type="password"
+                                formControlName="password" 
+                                placeholder="Password">
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <div class="col-xs-12">
+                        <input class="form-control" type="password" required="" placeholder="Confirm Password">
+                    </div>
+                </div> -->
+                <!-- <div class="form-group row">
+                    <div class="col-md-12">
+                        <div class="checkbox checkbox-primary p-t-0">
+                            <input id="checkbox-signup" type="checkbox">
+                            <label for="checkbox-signup"> I agree to all <a href="#">Terms</a></label>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col text-danger">
+                        <p *ngIf="campoNoValido('nombre')">El nombre es obligatorio</p>
+                        <p *ngIf="campoNoValido('apellido')">El apellido es obligatorio</p>
+                        <p *ngIf="campoNoValido('password')">El nombre es obligatorio</p>
+                        <p *ngIf="campoNoValido('celular')">El celular es obligatorio y debe tener 10 digitos</p>
+                    </div>
+                </div>
+                <div class="form-group text-center m-t-20">
+                    <div class="col-xs-12">
+                        <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Registrarse</button>
+                    </div>
+                </div>
+                <div class="form-group m-b-0">
+                    <div class="col-sm-12 text-center">
+                        <p>Ya tienes una cuenta? <a routerLink="/login" class="text-info m-l-5"><b>Inicia sesion</b></a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->

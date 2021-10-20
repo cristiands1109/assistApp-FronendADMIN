@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-lg-12  ">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Mantenimiento</h4>
+                <h6 class="card-subtitle">Ajustes</h6>
+                <div class="text-center" *ngIf="!ciudadCargada">
+                    <i class='fa fa-spinner fa-pulse fa-spin fa-2x'></i>
+                </div>
+                <form *ngIf="ciudadCargada" class="form p-t-20" [formGroup]="ciudadForm" (ngSubmit)="crear()">
+                    <div class="form-group">
+                        <label for="exampleInputuname">Departamento</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input  type="text" 
+                                    class="form-control" 
+                                    id="exampleInputuname"
+                                    formControlName="departamento" 
+                                    readonly
+                                    placeholder="Descripcion">
+                        </div>
+                        <!-- <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="campoNoValido('descripcion')">La descripcion es obligatoria</p>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Ciudad</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input  type="text"
+                                    class="form-control" 
+                                    id="exampleInputuname"
+                                    formControlName="descripcion" 
+                                    placeholder="Ciudad">
+                        </div>
+                        <!-- <div class="input-group" *ngIf="!noeditar">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input  type="text" 
+                                    class="form-control" 
+                                    id="exampleInputuname"
+                                    formControlName="prioridad" 
+                                    placeholder="Prioridad"
+                                    readonly>
+                        </div> -->
+                        <!-- <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="campoNoValido('prioridad')">La prioridad es obligatoria</p>
+                            </div>
+                        </div> -->
+                        <!-- <div class="row">
+                            <div class="col text-danger">
+                                <p *ngIf="errorcrear">Las prioridades registradas son: {{prioridadesUtilizas}}</p>
+                            </div>
+                        </div> -->
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                    <button type="button" routerLink="/dashboard/ciudades" class="btn btn-inverse waves-effect waves-light">Volver</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</div>

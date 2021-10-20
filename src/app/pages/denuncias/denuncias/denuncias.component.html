@@ -1,0 +1,80 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input type="text" class="form-control" placeholder="buscar usuario... ">
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="row animated fadeIn fast" *ngIf="!cargandoDenuncia">
+    <div class="col-12">
+        <div class="text-center">
+          <h4 class="alert-heading">Cargando</h4>
+          <i class='fa fa-spinner fa-pulse fa-spin fa-2x'></i>
+          <p class="mb-0">Espere por favor</p>
+        </div>
+    </div>
+</div> 
+
+<div class="row" *ngIf="!sinRegistro && cargandoDenuncia">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Denuncias</h4>
+                <h6 class="card-subtitle">Denuncias recibidas
+                </h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="text-center">
+                            <tr>
+                                <th>Celular</th>
+                                <th>Denunciante</th>
+                                <th>Relatoria</th>
+                                <th>Direccion</th>
+                                <th>Imagen</th>
+                                <th class="text-nowrap">Emitir Alerta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let emergencia of Emergencias">
+                                <td>{{emergencia.denunciante.celular}}</td>
+                                <td>{{emergencia.denunciante.nombre}} {{emergencia.denunciante.apellido}}</td>
+                                <td>{{emergencia.relatoria}}</td>
+                                <td>{{emergencia.direccion}}</td>
+                                <td class="text-center">
+                                    <button *ngIf="emergencia.img" 
+                                            type="button" 
+                                            class="btn btn-info" 
+                                            (click)="abrirModal(emergencia)">
+                                            <i class="fa fa-picture-o"></i>
+                                    </button>
+                                    <!-- <a class="undeline-tag text-info " *ngIf="emergencia.img" (click)="abrirModal(emergencia)"> Ver imagen</a> -->
+                                    <!-- <img (click)="abrirModal(emergencia)" class="imageEmer" src="{{emergencia.img}}"> -->
+                                </td>
+                                <td class="text-nowrap text-center">
+                                    <a [routerLink]="['/dashboard/denuncia',emergencia.emergenciaID]"data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-bell text-danger m-r-10"></i> </a>
+                                    <!-- <a href="#" data-toggle="tooltip" data-original-title="Borrar"> <i class="fa fa-close text-danger"></i> </a> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-secondary">Anteriores</button>
+                    &nbsp;
+                    <button class="btn btn-secondary">Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </div>   
+</div>
+
+<div class="row" *ngIf="sinRegistro">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4>No hay registros</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
